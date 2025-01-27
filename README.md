@@ -5,9 +5,16 @@ for large files, make a folder called data_large_files/ and add whatever you nee
 
 TO DO LIST
 
-1. requirements.txt file - Sam
-2. 
+1. 
 
-test
+Read
 
-delete test
+CNN
+- https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53
+- https://towardsdatascience.com/convolutional-neural-networks-explained-9cc5188c4939
+
+Residuals Neural Networks
+- https://medium.com/@ibtedaazeem/understanding-resnet-architecture-a-deep-dive-into-residual-neural-network-2c792e6537a9
+
+Wide Residual Netwroks
+- https://arxiv.org/pdf/1605.07146
