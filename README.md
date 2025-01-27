@@ -15,6 +15,12 @@ CNN
 
 Residuals Neural Networks
 - https://medium.com/@ibtedaazeem/understanding-resnet-architecture-a-deep-dive-into-residual-neural-network-2c792e6537a9
+- https://medium.com/@14prakash/understanding-and-implementing-architectures-of-resnet-and-resnext-for-state-of-the-art-image-cf51669e1624
+- https://medium.com/analytics-vidhya/understanding-and-implementation-of-residual-networks-resnets-b80f9a507b9c
+- https://towardsdatascience.com/intuition-behind-residual-neural-networks-fa5d2996b2c7
 
 Wide Residual Netwroks
 - https://arxiv.org/pdf/1605.07146
+  
+Models:
+- https://medium.com/@14prakash/almost-any-image-classification-problem-using-pytorch-i-am-in-love-with-pytorch-26c7aa979ec4
