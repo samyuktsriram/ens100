@@ -24,3 +24,61 @@ Wide Residual Netwroks
   
 Models:
 - https://medium.com/@14prakash/almost-any-image-classification-problem-using-pytorch-i-am-in-love-with-pytorch-26c7aa979ec4
+
+
+Python Environment Setup
+```console
+mkdir -p ~/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm ~/miniconda3/miniconda.sh
+```
+
+After installing, close and reopen your terminal application or refresh it by running the following command:
+
+```console
+source ~/miniconda3/bin/activate
+conda init --all
+```
+
+Create Environment:
+
+```console
+conda create -n erwan python=3.10
+conda activate erwan
+```
+
+Install packages:
+
+```console
+conda create -n erwan python=3.10
+conda activate erwan
+```
+
+```console
+sudo apt-get install wget gpg
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" |sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+rm -f packages.microsoft.gpg
+```
+
+```console
+sudo apt install apt-transport-https
+sudo apt update
+sudo apt install code # or code-insiders
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
