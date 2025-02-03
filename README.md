@@ -26,7 +26,7 @@ Models:
 - https://medium.com/@14prakash/almost-any-image-classification-problem-using-pytorch-i-am-in-love-with-pytorch-26c7aa979ec4
 
 
-Python Environment Setup
+## Conda Environment Setup
 ```console
 mkdir -p ~/miniconda3
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
@@ -41,27 +41,26 @@ source ~/miniconda3/bin/activate
 conda init --all
 ```
 
-Create Environment:
+## Create Environment:
 
 ```console
 conda create -n erwan python=3.10
 conda activate erwan
 ```
 
-Install packages:
-
 ```console
 conda create -n erwan python=3.10
 conda activate erwan
 ```
 
-**To Run Jupyter Notebook (don't you dare look at this Sam)**
+## To Run Jupyter Notebook (don't you dare look at this Sam)
 
 ```console
 pip install notebook
 ```
 
 Not sure we need this (???)
+
 ---
 ```console
 sudo apt-get install wget gpg
@@ -78,10 +77,11 @@ sudo apt install code # or code-insiders
 ```
 ---
 
-Make sure to install the python and jupyter extensions in vs code, just go to the extentions tab
+Make sure to install the python and jupyter extensions in vs code, just go to the extentions tab.
+
 Select the Kernel after this.
 
-**Install packages**
+## Install packages
 
 ```console
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
