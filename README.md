@@ -55,6 +55,14 @@ conda create -n erwan python=3.10
 conda activate erwan
 ```
 
+**To Run Jupyter Notebook (don't you dare look at this Sam)**
+
+```console
+pip install notebook
+```
+
+Not sure we need this (???)
+---
 ```console
 sudo apt-get install wget gpg
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
@@ -67,6 +75,17 @@ rm -f packages.microsoft.gpg
 sudo apt install apt-transport-https
 sudo apt update
 sudo apt install code # or code-insiders
+```
+---
+
+Make sure to install the python and jupyter extensions in vs code, just go to the extentions tab
+Select the Kernel after this.
+
+**Install packages**
+
+```console
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+pip install scikit-learn scipy tqdm pillow matplotlib scikit-image
 ```
 
 
