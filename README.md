@@ -88,6 +88,32 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 pip install scikit-learn scipy tqdm pillow matplotlib scikit-image pandas
 ```
 
+## Github
+
+Check First if it's already installed
+
+```console
+git version
+```
+
+If not, install it:
+
+```console
+sudo apt-get update
+sudo apt-get install git-all
+```
+
+**Clone**
+
+```console
+git clone https://github.com/samyuktsriram/ens100.git
+git config user.email "sriramsamyukt@gmail.com"
+git config --global user.name "samyuktsriram"
+```
+
+When commiting, you use sam's username - sriramsamyukt@gmail.com - and for the password, the token.
+
+
 
 
 
