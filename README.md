@@ -85,7 +85,7 @@ Select the Kernel after this.
 
 ```console
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-pip install scikit-learn scipy tqdm pillow matplotlib scikit-image
+pip install scikit-learn scipy tqdm pillow matplotlib scikit-image pandas
 ```
 
 
