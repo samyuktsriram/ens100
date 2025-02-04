@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import os
 
-path_folder = '/Users/sam/Desktop/X/ens100/data_large_files/input_train'
-path_csv = '/Users/sam/Desktop/X/ens100/data_large_files/Y_train.csv'
+path_folder = '/mnt/disks/location/input_train'
+path_csv = '/mnt/disks/location/Y_train.csv'
 
 # Dict defining rotation and cropping depending on component
 rot_crop_data = {

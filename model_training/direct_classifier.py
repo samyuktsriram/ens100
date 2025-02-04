@@ -28,7 +28,7 @@ class CustomDataset(torch.utils.data.Dataset):
         return image, label
 
 # Load the CSV file
-csv_path = 'data_large_files/Y_train.csv'
+csv_path = '/mnt/disks/location/Y_train.csv'
 data = pd.read_csv(csv_path)
 
 # Split the data into training and validation sets
@@ -41,15 +41,15 @@ transform = transforms.Compose([
     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 ])
 
-path_images = '/Users/sam/Desktop/X/ens100/data_large_files/input_train'
+path_images = '/mnt/disks/location/input_train'
 
 # Create the datasets
 train_dataset = CustomDataset(train_data, path_images, transform=transform)
 val_dataset = CustomDataset(val_data, path_images, transform=transform)
 
 # Create the dataloaders
-train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
-val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False)
+train_loader = DataLoader(train_dataset, batch_size=128, shuffle=True)
+val_loader = DataLoader(val_dataset, batch_size=128, shuffle=False)
 
 # Load a prebuilt model (ResNet18)
 model = resnet18(pretrained=True)
