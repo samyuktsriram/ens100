@@ -113,6 +113,12 @@ git config --global user.name "samyuktsriram"
 
 When commiting, you use sam's username - sriramsamyukt@gmail.com - and for the password, the token.
 
+Activate Conda Environment
+
+```console
+conda activate /opt/conda/envs/shared_env
+```
+
 
 
 
