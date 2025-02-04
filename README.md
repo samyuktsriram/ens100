@@ -116,7 +116,7 @@ When commiting, you use sam's username - sriramsamyukt@gmail.com - and for the p
 Activate Conda Environment
 
 ```console
-conda activate /opt/conda/envs/shared_env
+conda activate /mnt/disks/location/conda/envs/shared_env
 ```
 
 
