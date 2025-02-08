@@ -89,10 +89,10 @@ val_loader = DataLoader(val_dataset, batch_size=64, shuffle=False)
 # Load a prebuilt model (ResNet18)
 model = resnet18(pretrained=True)
 num_ftrs = model.fc.in_features
-model.fc = nn.Linear(num_ftrs, 1)
+model.fc = nn.Linear(num_ftrs, 6) #CHANGE THIS BASED ON NUM CLASSES
 
 # Define the loss function and optimizer
-criterion = nn.BCEWithLogitsLoss()
+criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 # Train the model
@@ -107,7 +107,7 @@ for epoch in range(num_epochs):
     train_loader_tqdm = tqdm(train_loader, desc=f"Epoch {epoch+1}/{num_epochs}")
 
     for inputs, labels in train_loader_tqdm:
-        inputs, labels = inputs.to(device), labels.to(device).float().unsqueeze(1)
+        inputs, labels = inputs.to(device), labels.to(device).long()
         optimizer.zero_grad()
         outputs = model(inputs)
         loss = criterion(outputs, labels)
@@ -136,7 +136,7 @@ for epoch in range(num_epochs):
     with torch.no_grad():
         val_loader_tqdm = tqdm(val_loader, desc=f"Validation {epoch+1}/{num_epochs}")
         for inputs, labels in val_loader:
-            inputs, labels = inputs.to(device), labels.to(device).float().unsqueeze(1)
+            inputs, labels = inputs.to(device), labels.to(device).long()
             outputs = model(inputs)
             loss = criterion(outputs, labels)
             val_loss += loss.item() * inputs.size(0)
