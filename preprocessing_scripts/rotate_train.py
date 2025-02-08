@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import os
 
-path_folder = '/mnt/disks/location/input_train'
-path_csv = '/mnt/disks/location/Y_train.csv'
+path_folder = '/mnt/disks/location/input_test'
+path_csv = '/mnt/disks/location/Y_random.csv'
 
 # Dict defining rotation and cropping depending on component
 rot_crop_data = {
@@ -49,8 +49,11 @@ def rotate_and_crop_image(path, angle, crop_box, plot=False):
 
 test_df = pd.read_csv(path_csv)
 
-for index, row in test_df.iterrows():
-   path = os.path.join(path_folder, row['filename'])
-   rotate_and_crop_image(path, rot_crop_data[row['lib']][0], rot_crop_data[row['lib']][1], plot=False)
+#ALL IMAGES HAVE ALREADY BEEN ROTATED. CHECK AGAIN, AND BE SURE OF WHAT YOU'RE DOING
+
+
+#for index, row in test_df.iterrows():
+#   path = os.path.join(path_folder, row['filename'])
+#   rotate_and_crop_image(path, rot_crop_data[row['lib']][0], rot_crop_data[row['lib']][1], plot=False)
 
 print(f"successfully rotated {path_folder} ")
