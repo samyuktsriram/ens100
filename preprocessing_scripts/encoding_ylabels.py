@@ -12,7 +12,7 @@ encodings = {
 }
 
 # Path to the CSV file
-csv_file_path = '/Users/sam/Desktop/X/ens100/data_large_files/Y_train.csv'
+csv_file_path = '/mnt/disks/location/Y_train.csv'
 
 # Load the CSV file into a DataFrame
 df = pd.read_csv(csv_file_path)
@@ -24,4 +24,4 @@ column_to_encode = 'Label'
 df[column_to_encode] = df[column_to_encode].map(encodings)
 
 # Save the encoded DataFrame back to a CSV file
-df.to_csv('/Users/sam/Desktop/X/ens100/data_large_files/Y_train.csv', index=False)
+df.to_csv('/mnt/disks/location/Y_train.csv', index=False)
