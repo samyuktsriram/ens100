@@ -86,6 +86,8 @@ val_dataset = CustomDataset(val_data, path_images, transform=transform)
 train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=64, shuffle=False)
 
+print(f"Total images loaded in val dataset: {len(val_dataset)}")
+
 model = torch.load('/mnt/disks/location/ens100_sam/saved_models/model.pth', weights_only=False)
 print(model)
 
@@ -99,6 +101,10 @@ val_loss = 0.0
 correct, total = 0, 0  # Track accuracy
 with torch.no_grad():
     val_loader_tqdm = tqdm(val_loader, desc=f"Final Validation")
+
+    full_preds = []
+    full_labels = []
+
     for inputs, labels in val_loader:
         inputs, labels = inputs.to(device), labels.to(device).long()
         outputs = model(inputs)
@@ -112,9 +118,13 @@ with torch.no_grad():
             # Live update progress bar
         val_loader_tqdm.set_postfix(loss=loss.item(), accuracy=correct / total)
 
+        full_labels += labels.reshape(-1).tolist()
+        full_preds += preds.tolist()
 
-y_true = labels.reshape(-1).tolist()
-y_pred = preds.tolist()
+y_true = full_labels
+y_pred = full_preds
+
+print(y_true, y_pred)
 
 cm = confusion_matrix(y_true, y_pred)
 
