@@ -1,0 +1,116 @@
+% il existe plusieures classes de documents
+% pour des documents plus longs, vous pouvez utiliser
+% book ou report
+\documentclass[a4paper]{article} 
+
+
+
+% vous pouvez changer les paramètres : voici les options dispoinibles :
+% - a4paper
+% - fancysections
+% - notitlepage ou titlepage
+% - onside ou twoside selon si vous voulez l'imprimer en recto-verso ou en recto
+% - sectionmark
+% - chaptermark (pour les 
+% - pagenumber
+% - enmanquedinspiration
+% en cas de doutes, pas de doutes, la documentation est sur :
+%  https://gitlab.binets.fr/typographix/polytechnique/-/blob/master/source/polytechnique.pdf
+\usepackage[a4paper,  fancysections,  titlepage]{polytechnique}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{blindtext}
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsmath, amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{DarkRed}{RGB}{200,0,0}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{white},   
+    commentstyle=\color{DarkRed},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{black},
+    stringstyle=\color{DarkRed},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+
+% nous avons défini deux commandes :
+\newcommand{\code}[1]{%
+    \mbox{\ttfamily%
+        \detokenize{#1}%
+    }%
+}
+
+\newcommand{\resultat}[1]{%
+    \quad \rightsquigarrow \quad #1%
+}
+
+\author{Martyna Harasym, João Martins da Silva, Samyukt Sriram}
+\date{\today}
+\title{ENS}
+\subtitle{Database Management - APM-50443-EP}%
+% pour changer de logo, ajoutez l'image dans un fomat PDF
+% ou image en la glissant à droite et remplacez typographix
+% par le nom de l'image, si vous ne voulez pas de logo, 
+% supprimze la ligne. 
+% \logo{typographix}
+
+
+
+
+\begin{document}
+    \maketitle 
+	
+    \tableofcontents
+    \newpage
+	
+    \section{Problem Introduction + Main Challenges Faced}
+    We chose 'Improving Industrial Quality Control with Computer Vision'
+by Valeo as our task. This is a supervised classification problem to identify particular types of defects in a manufacturing process. There is a large class imbalance, and an additional 'drift' class that exists only in the test set, so our goal is to also be able to detect these in an unsupervised setting. A custom penalty matrix is imposed for misclassifications, with undetected defects being heavily penalized. Therefore our challenges were:
+\begin{itemize}
+    \item Limited examples of certain classes in the training set
+    \item No examples of 'drift' class in the training set
+    \item An exponentially different weight to certain errors compared to others
+\end{itemize}
+    \section{Approaches}
+    \subsection{ResNet + Isolation Forest}
+    To begin our attempts, and to have a first model pipeline to begin iterating over, we trained a ResNet for around 10 epochs on the training data, ignoring the drift class for the moment. We used the scikit-learn implementation of Isolation Forest, to identify drifts. This was done by using the pretrained model, removing the last fully-connected layer, and using the outputs of the penultimate layer as input data to the Isolation Forest to be fitted on. \\
+    The rationale here was that for test examples from the drift would create significantly different activations in the penultimate layer, as the model had not been trained on them. Isolation forest uses a hyperparameter 'contamination' that we need to specify to indicate what proportion of examples we believe are drifts. As a first try, we set this to 5\%. \\
+    For inference, we simply return 'drift' if the isolation forest predicted an anomaly, and the predicted class of the ResNet if not. 
+    \[
+\hat{y} =
+\begin{cases} 
+\text{"drift"}, & \text{if } f_{\text{IF}}(x) = 1 \\
+f_{\text{ResNet}}(x), & \text{otherwise}
+\end{cases}
+\]
+Here $f_{\text{IF}}(x) = 1$ refers to the IsolationForest predicting an anomaly.\\
+    Predictably, our results did not beat the benchmark, however we were able to set up an evaluation loop to incorporate the penalty-weighted matrix in the model callbacks, and a confusion matrix for this model. 
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{images/direct_classifier_cm.png}    
+    \end{center}
+    Note that the 'missing' label 4 is very highly represented in the training label, while the 'good' label is 0. 
+    \subsection{Teacher-Student Network}
+    In order to improve the anomaly detection, and to give the model as much information as we could to prioritize 'good' label, we used an alternative approach using the Teacher-Student method for unsupervised anomaly detection.
+\begin{thebibliography}{}
+	\bibitem{premier_article}{Kardes, H., Agrawal, S., Wang, X. and Sun, A., 2014, February. Ccf: Fast and scalable connected component computation in mapreduce. In\emph{ 2014 International Conference on Computing, Networking and Communications (ICNC)} (pp. 994-998). IEEE.
+	}
+\end{thebibliography}
+	
+\end{document}
